@@ -30,6 +30,7 @@
     "react-scripts": "3.0.1",
     "react-table": "^7.0.0-rc.15",
     "react-transition-group": "^2.5.1",
+    "reactstrap": "^8.4.0",
     "styled-components": "^5.0.0"
   },
   "scripts": {
