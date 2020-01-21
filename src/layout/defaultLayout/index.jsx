@@ -5,7 +5,8 @@ import { AppFooter } from "./AppFooter";
 import { AppMenu } from "./AppMenu";
 import { AppProfile } from "./AppProfile";
 import { Route } from "react-router-dom";
-import { Dashboard } from "../../components/Dashboard";
+import DashboardIndex from "../../views/dashboard";
+import OsIndex from "../../views/os";
 import "primereact/resources/themes/nova-light/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -87,24 +88,15 @@ class defaultLayout extends Component {
         label: "Dashboard",
         icon: "pi pi-fw pi-home",
         command: () => {
-          window.location = "#/";
+          window.location = "#/dashboard";
         }
       },
       {
-        label: "Menu Modes",
-        icon: "pi pi-fw pi-cog",
-        items: [
-          {
-            label: "Static Menu",
-            icon: "pi pi-fw pi-bars",
-            command: () => this.setState({ layoutMode: "static" })
-          },
-          {
-            label: "Overlay Menu",
-            icon: "pi pi-fw pi-bars",
-            command: () => this.setState({ layoutMode: "overlay" })
-          }
-        ]
+        label: "Os",
+        icon: "pi pi-fw pi-bars",
+        command: () => {
+          window.location = "#/os";
+        }
       }
     ];
   }
@@ -174,7 +166,8 @@ class defaultLayout extends Component {
         </div>
 
         <div className="layout-main">
-          <Route path="/" exact component={Dashboard} />
+          <Route path="/dashboard" exact component={DashboardIndex} />
+          <Route path="/os" exact component={OsIndex} />
         </div>
 
         <AppFooter />
