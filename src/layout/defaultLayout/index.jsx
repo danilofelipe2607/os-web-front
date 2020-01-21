@@ -4,7 +4,7 @@ import { AppTopbar } from "./AppTopbar";
 import { AppFooter } from "./AppFooter";
 import { AppMenu } from "./AppMenu";
 import { AppProfile } from "./AppProfile";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import DashboardIndex from "../../views/dashboard";
 import OsIndex from "../../views/os";
 import "primereact/resources/themes/nova-light/theme.css";
@@ -16,6 +16,7 @@ import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 import "./layout.scss";
 import "./App.scss";
+import ScrollToTop from "../../ScrollToTop";
 
 class defaultLayout extends Component {
   constructor() {
@@ -150,30 +151,33 @@ class defaultLayout extends Component {
     });
 
     return (
-      <div className={wrapperClass} onClick={this.onWrapperClick}>
-        <AppTopbar onToggleMenu={this.onToggleMenu} />
+      <ScrollToTop>
+        <div className={wrapperClass} onClick={this.onWrapperClick}>
+          <AppTopbar onToggleMenu={this.onToggleMenu} />
 
-        <div
-          ref={el => (this.sidebar = el)}
-          className={sidebarClassName}
-          onClick={this.onSidebarClick}
-        >
-          <div className="layout-logo">
-            <img alt="Logo" src={logo} />
+          <div
+            ref={el => (this.sidebar = el)}
+            className={sidebarClassName}
+            onClick={this.onSidebarClick}
+          >
+            <div className="layout-logo">
+              <img alt="Logo" src={logo} />
+            </div>
+            <AppProfile />
+            <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} />
           </div>
-          <AppProfile />
-          <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} />
+
+          <div className="layout-main">
+            <Redirect from="/" exact to="/dashboard" />
+            <Route path="/dashboard" exact component={DashboardIndex} />
+            <Route path="/os" exact component={OsIndex} />
+          </div>
+
+          <AppFooter />
+
+          <div className="layout-mask"></div>
         </div>
-
-        <div className="layout-main">
-          <Route path="/dashboard" exact component={DashboardIndex} />
-          <Route path="/os" exact component={OsIndex} />
-        </div>
-
-        <AppFooter />
-
-        <div className="layout-mask"></div>
-      </div>
+      </ScrollToTop>
     );
   }
 }

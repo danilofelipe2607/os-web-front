@@ -1,46 +1,34 @@
 import React from "react";
-
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Button } from "primereact/button";
 import logo from "../../assets/img/logo.png";
+import { Routes } from "../../routes/routes";
 
 import "./style.css";
 export default function AdminLayout() {
+  function getRoutes(routes) {
+    return routes.map((prop, key) => {
+      if (prop.collapse) {
+        return getRoutes(prop.views);
+      }
+      if (prop.layout === "/auth") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      }
+      return null;
+    });
+  }
   return (
     <div className="container">
-      <div className="box">
-        <div className="login-body">
-          <div className="login-panel p-fluid">
-            <div className="login-panel-header" style={{ textAlign: "center" }}>
-              <img src={logo} style={{ width: "80px", height: "70px" }} />
-            </div>
-            <div className="login-panel-content">
-              <div className="p-grid">
-                <div className="p-col-12" style={{ textAlign: "center" }}>
-                  <h1>OS-Web</h1>
-                </div>
-                <div className="p-col-12" style={{ textAlign: "center" }}>
-                  <span className="md-inputfield">
-                    <input className="p-inputtext p-component" />
-                    <label>Email</label>
-                  </span>
-                </div>
-                <div className="p-col-12" style={{ textAlign: "center" }}>
-                  <span className="md-inputfield">
-                    <input className="p-inputtext p-component" />
-                    <label>Senha</label>
-                  </span>
-                </div>
-                <div className="p-col-12">
-                  <Button className="p-button-warning" label="Entrar" />
-                </div>
-                <div className="p-col-12">
-                  Não possui Conta? <a href="/#">Cadastre-se</a>.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Switch>
+        {getRoutes(Routes)}
+        <Redirect from="/auth" to="/auth/login" />
+      </Switch>
     </div>
   );
 }

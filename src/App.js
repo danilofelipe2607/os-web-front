@@ -1,14 +1,19 @@
 import React from "react";
-import DefaultLayout from "../src/layout/defaultLayout/index";
-import AdminLayout from "../src/layout/adminLayout/index";
-import { HashRouter } from "react-router-dom";
-import ScrollToTop from "./ScrollToTop";
+import { Provider } from "react-redux";
+import { createBrowserHistory } from "history";
+import store from "./store";
+import { BrowserRouter, Router } from "react-router-dom";
+import Routes from "./routes";
+
 export default function App() {
+  const hist = createBrowserHistory();
   return (
-    <HashRouter>
-      <ScrollToTop>
-        <AdminLayout />
-      </ScrollToTop>
-    </HashRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Router history={hist}>
+          <Routes />
+        </Router>
+      </BrowserRouter>
+    </Provider>
   );
 }
