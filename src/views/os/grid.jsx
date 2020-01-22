@@ -84,7 +84,7 @@ function Grid() {
           { Header: "Data", accessor: "age" },
           { Header: "Responsável", accessor: "age" },
           { Header: "Status", accessor: "age" },
-          { Header: "Impressão", accessor: "age" }
+          { Header: "Ação", accessor: "age" }
         ]
       }
     ],
