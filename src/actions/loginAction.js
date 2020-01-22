@@ -2,36 +2,36 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import hash from "react-router-history";
 
-import Api from "../utils/api";
-import * as types from "../utils/actionTypes";
+import { api } from "../utils/api";
+import * as a from "../utils/actionTypes";
 
 const { hashHistory } = hash;
 
 export const realizarLoginAction = values => async dispatch => {
   try {
     const { email, senha } = values;
+    console.log(email, senha);
+    hashHistory.push("/dashboard");
+    // const { data } = await api.post(`/auth/${email}/${senha}`);
+    // if (data.token) {
+    //   dispatch({ type: a.LOGIN_SET_SUCESS, payload: data.token });
+    //   localStorage.setItem("Authorization", data.token);
+    //   hashHistory.push("/dashboard");
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Logado com sucesso!",
+    //     showConfirmButton: false,
+    //     timer: 750
+    //   });
+    // }
 
-    const { data } = await axios.get(`${Api}users/login/${email}/${senha}`);
-    if (data.auth) {
-      dispatch({
-        type: types.LOGIN_SET_EMAIL_SENHA,
-        payload: { email, senha }
-      });
-      Swal.fire({
-        icon: "success",
-        title: "Logado com sucesso!",
-        showConfirmButton: false,
-        timer: 750
-      });
-      localStorage.setItem("Authorization", data.token);
-      hashHistory.push("/dashboard");
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Usuário ou senha inválidos!"
-      });
-    }
+    // else {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...",
+    //     text: "Usuário não encontrado!."
+    //   });
+    // }
   } catch (error) {
     Swal.fire({
       icon: "error",

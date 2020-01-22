@@ -5,12 +5,12 @@ const Dashboard = React.lazy(() => import("../views/dashboard/index"));
 const Os = React.lazy(() => import("../views/os/index"));
 
 export const Routes = [
-  {
-    path: "/",
-    name: "Home",
-    exact: true,
-    layout: "/"
-  },
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   exact: true,
+  //   layout: "/"
+  // },
   {
     path: "/dashboard",
     name: "Dashboard",
