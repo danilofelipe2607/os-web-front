@@ -40,7 +40,7 @@ const PublicRoutes = ({ token, component: Component, ...rest }) => {
 };
 
 function Routes() {
-  const token = "23232323232";
+  const token = useSelector(state => state.LoginReducer.token);
   return (
     <HashRouter>
       <React.Suspense fallback={loading()}>

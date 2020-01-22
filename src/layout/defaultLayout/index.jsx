@@ -168,9 +168,9 @@ class defaultLayout extends Component {
           </div>
 
           <div className="layout-main">
-            <Redirect from="/" exact to="/dashboard" />
-            <Route path="/dashboard" exact component={DashboardIndex} />
-            <Route path="/os" exact component={OsIndex} />
+            {/* <Redirect from="/" exact to="/dashboard" /> */}
+            <Route path="/dashboard" component={DashboardIndex} />
+            <Route path="/os" component={OsIndex} />
           </div>
 
           <AppFooter />

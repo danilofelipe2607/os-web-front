@@ -11,19 +11,20 @@ export const Routes = [
   //   exact: true,
   //   layout: "/"
   // },
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: Dashboard,
-    layout: "/"
-  },
-  {
-    path: "/os",
-    name: "Os",
-    component: Os,
-    exact: true,
-    layout: "/"
-  },
+  // {
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   exact: true,
+  //   component: Dashboard,
+  //   layout: "/"
+  // },
+  // {
+  //   path: "/os",
+  //   name: "Os",
+  //   component: Os,
+  //   exact: true,
+  //   layout: "/"
+  // },
   //   {
   //     path: "/cadastros/servicos",
   //     name: "Clientes",
