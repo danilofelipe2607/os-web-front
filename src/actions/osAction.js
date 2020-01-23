@@ -3,7 +3,6 @@ import hash from "react-router-history";
 
 import api from "../utils/api";
 import * as a from "../utils/actionTypes";
-import { Button } from "reactstrap";
 
 const { hashHistory } = hash;
 
@@ -43,11 +42,11 @@ export const adicionarOsAction = values => async dispatch => {
 
       Swal.fire({
         icon: "success",
-        title: `Adicionar com sucesso!`,
+        title: `Adicionado com sucesso!`,
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
-        confirmButtonText: "Imprimir!",
+        confirmButtonText: "Imprimir",
         cancelButtonText: "não"
       }).then(result => {
         if (result.value === true) {
@@ -69,6 +68,22 @@ export const adicionarOsAction = values => async dispatch => {
       title: "Oops...",
       text:
         "Ocorreu um erro ao tentar adicionar a nova os! Tente novamente mais tarde."
+    });
+  }
+};
+
+export const getOsAction = async dispatch => {
+  try {
+    console.log("assssssssssssssssssw");
+    const { data } = await api.get("/os");
+    console.log(data);
+    dispatch({ type: a.GET_SUCESS, payload: data });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text:
+        "Ocorreu um erro ao tentar buscar as os! Tente novamente mais tarde."
     });
   }
 };

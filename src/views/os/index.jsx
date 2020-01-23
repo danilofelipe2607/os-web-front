@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CarService } from "../../service/CarService";
 import { Panel } from "primereact/panel";
 import { Checkbox } from "primereact/checkbox";
@@ -6,10 +6,17 @@ import Filtro from "./filtro";
 import Grid from "./grid";
 import { Button } from "primereact/button";
 import AdicionarOS from "./adicionar";
+import { getOsAction } from "../../actions/osAction";
 
 export default function OsIndex() {
   const [visible, setVisible] = useState(false);
 
+  useEffect(() => {
+    function load() {
+      getOsAction();
+    }
+    load();
+  }, []);
   function toggle() {
     setVisible(true);
   }
