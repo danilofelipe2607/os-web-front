@@ -1,103 +1,44 @@
 import React from "react";
 import styled from "styled-components";
-import { useTable } from "react-table";
-import { Paginator } from "primereact/paginator";
+import Table from "./components/table";
+import { format, parseISO } from "date-fns";
+import { Button } from "reactstrap";
 
-import makeData from "./components/makeData";
-
-const Styles = styled.div`
-  padding: 1rem;
-  table {
-    font-weight: bold;
-    border-spacing: 2;
-    width: 950px;
-    border: 2px solid black;
-    background: white;
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 2px solid black;
-      border-right: 2px solid black;
-      :last-child {
-        border-right: 0;
-      }
-    }
-  }
-`;
-
-function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow
-  } = useTable({
-    columns,
-    data
+function Grid({ data }) {
+  const dataOs = data.map(item => {
+    return {
+      ...item,
+      date: item.date != null ? format(parseISO(item.date), "dd/MM/yyyy") : null
+    };
   });
 
-  // Render the UI for your table
-  return (
-    <table {...getTableProps()}>
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
-}
-
-function Grid() {
   const columns = React.useMemo(
     () => [
       {
         Header: "Lista de Orçamentos de Serviços",
         columns: [
-          { Header: "Número OS", accessor: "age" },
-          { Header: "Data", accessor: "age" },
-          { Header: "Responsável", accessor: "age" },
-          { Header: "Status", accessor: "age" },
-          { Header: "Ação", accessor: "age" }
+          { Header: "Número OS", accessor: "numero" },
+          { Header: "Data", accessor: "date" },
+          { Header: "Responsável", accessor: "responsavel" },
+          { Header: "Status", accessor: "status" },
+          {
+            Header: "Ação",
+            accessor: "teste",
+            Cell: ({ cell }) => {
+              return (
+                <div>
+                  <Button id="id">Editar</Button>
+                </div>
+              );
+            }
+          }
         ]
       }
     ],
     []
   );
 
-  const data = React.useMemo(() => makeData(10), []);
-
-  return (
-    <Styles>
-      <Table columns={columns} data={data} />
-    </Styles>
-  );
+  return <Table columns={columns} data={dataOs} />;
 }
 
 export default Grid;

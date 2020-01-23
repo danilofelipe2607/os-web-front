@@ -6,5 +6,6 @@ export const LOGIN_SET_FAIL = "LOGIN_SET_FAIL";
 export const LOGIN_SET_SUCESS = "LOGIN_SET_SUCESS";
 
 // ActionTypes - osReducer
+export const OS_ESTADO_INICIAL = "OS_ESTADO_INICIAL";
 export const GET_SUCESS = "GET_SUCESS";
 export const GET_FAIL = "GET_FAIL";

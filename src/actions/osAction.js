@@ -8,32 +8,8 @@ const { hashHistory } = hash;
 
 export const adicionarOsAction = values => async dispatch => {
   try {
-    const {
-      descricao,
-      numero,
-      responsavel,
-      valor,
-      type,
-      description,
-      date,
-      status,
-      url,
-      observacao,
-      search
-    } = values;
-
     const data = {
-      descricao,
-      numero,
-      responsavel,
-      valor,
-      type,
-      description,
-      date,
-      status,
-      url,
-      observacao,
-      search
+      ...values
     };
     const response = await api.post("/os", data);
 
@@ -71,13 +47,19 @@ export const adicionarOsAction = values => async dispatch => {
     });
   }
 };
+export const setDadosOS = data => ({
+  type: a.GET_SUCESS,
+  payload: data
+});
+export const setEstadoInicial = () => ({
+  type: a.INITIAL_STATE
+});
 
-export const getOsAction = async dispatch => {
+export const getOsAction = () => async dispatch => {
+  console.log(dispatch, "dispatch");
   try {
-    console.log("assssssssssssssssssw");
     const { data } = await api.get("/os");
-    console.log(data);
-    dispatch({ type: a.GET_SUCESS, payload: data });
+    dispatch(setDadosOS(data));
   } catch (error) {
     Swal.fire({
       icon: "error",

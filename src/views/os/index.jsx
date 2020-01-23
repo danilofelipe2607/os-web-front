@@ -7,16 +7,21 @@ import Grid from "./grid";
 import { Button } from "primereact/button";
 import AdicionarOS from "./adicionar";
 import { getOsAction } from "../../actions/osAction";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function OsIndex() {
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     function load() {
-      getOsAction();
+      dispatch(getOsAction());
     }
     load();
   }, []);
+
+  const data = useSelector(state => state.OsReducer.data);
+
   function toggle() {
     setVisible(true);
   }
@@ -57,7 +62,7 @@ export default function OsIndex() {
       </Panel>
       <br />
 
-      {/* <Grid /> */}
+      <Grid data={data} />
     </div>
   );
 }

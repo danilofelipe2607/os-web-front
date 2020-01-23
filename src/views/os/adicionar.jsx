@@ -45,7 +45,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
       >
         <Formik onSubmit={AdicionarOS} initialValues={initialValues}>
           {props => (
-            <form onSubmit={props.handleSubmit}>
+            <div>
               <div className="p-grid" style={{ marginTop: "50px" }}>
                 <div className="p-col">
                   <input
@@ -135,6 +135,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                     className="p-button-success"
                     icon="pi pi-check"
                     type="submit"
+                    onClick={props.handleSubmit}
                   />
                 </div>
                 <div className="p-col">
@@ -146,7 +147,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                   />
                 </div>
               </div>
-            </form>
+            </div>
           )}
         </Formik>
       </Dialog>
