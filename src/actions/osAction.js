@@ -70,10 +70,9 @@ export const getOsAction = () => async dispatch => {
 };
 
 export const getBuscarFiltro = values => async dispatch => {
-  console.log(values);
-  const filtro = values;
   try {
-    const { data } = await api.get(`/os/`);
+    console.log(values);
+    const { data } = await api.post("/osfiltro", values);
     //dispatch(setDadosOS(data));
   } catch (error) {
     Swal.fire({
