@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Table from "./components/table";
 import { format, parseISO } from "date-fns";
-import { Button } from "reactstrap";
+import { Button } from "primereact/button";
 
 function Grid({ data }) {
   const dataOs = data.map(item => {
@@ -26,9 +26,20 @@ function Grid({ data }) {
             accessor: "teste",
             Cell: ({ cell }) => {
               return (
-                <div>
-                  <Button id="id">Editar</Button>
-                </div>
+                <>
+                  <Button
+                    label="Editar"
+                    icon="pi pi-check"
+                    iconPos="right"
+                    style={{ width: "100px", marginRight: "10px" }}
+                  />
+                  <Button
+                    label="Excluir"
+                    icon="pi pi-check"
+                    iconPos="right"
+                    style={{ width: "100px" }}
+                  />
+                </>
               );
             }
           }

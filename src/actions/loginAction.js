@@ -14,7 +14,7 @@ export const realizarLoginAction = values => async dispatch => {
     const { data } = await api.post(`/auth/${email}/${senha}`);
     console.log("data", data);
     if (data.token) {
-      dispatch({ type: a.LOGIN_SET_SUCESS, payload: data.token });
+      dispatch({ type: a.LOGIN_SET_SUCESS, payload: data });
       localStorage.setItem("Authorization", data.token);
       hashHistory.push("/dashboard");
       Swal.fire({

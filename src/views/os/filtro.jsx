@@ -4,28 +4,48 @@ import { Formik } from "formik";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
+import { getBuscarFiltro } from "../../actions/osAction";
+import { useDispatch } from "react-redux";
 
 export default function Filtro() {
-  const citySelectItems = [
-    { label: "New York", value: "NY" },
-    { label: "Rome", value: "RM" },
-    { label: "London", value: "LDN" },
-    { label: "Istanbul", value: "IST" },
-    { label: "Paris", value: "PRS" }
+  const dispatch = useDispatch();
+  const initialValues = {
+    dateFinal: "",
+    dateInicial: "",
+    status: "",
+    numero: "",
+    responsavel: ""
+  };
+  const responsavel = [
+    { label: "Danilo", value: "Danilo" },
+    { label: "Jilmar", value: "Jilmar" },
+    { label: "Bruno", value: "Bruno" },
+    { label: "Aroldo", value: "Aroldo" }
   ];
+
+  const statusArray = [
+    { label: "pendente", value: "pendente" },
+    { label: "cancelada", value: "cancelada" },
+    { label: "execução", value: "execução" },
+    { label: "concluida", value: "concluida" }
+  ];
+
+  function getBuscar(values) {
+    dispatch(getBuscarFiltro(values));
+  }
   return (
     <>
-      <Formik>
+      <Formik initialValues={initialValues} onSubmit={getBuscar}>
         {props => (
-          <form>
+          <form onSubmit={props.handleSubmit}>
             <div className="p-grid p-align-center">
               <div className="p-col-3">
                 <label>Número da OS</label>
                 <span>
                   <InputText
-                    id="in"
-                    value={[]}
-                    onChange={e => this.setState({ value: e.target.value })}
+                    name="numero"
+                    value={props.values.numero}
+                    onChange={props.handleChange}
                   />
                 </span>
               </div>
@@ -34,8 +54,9 @@ export default function Filtro() {
                 <label htmlFor="in">Data Final da OS</label>
                 <span>
                   <Calendar
-                    value={[]}
-                    onChange={e => this.setState({ date: e.value })}
+                    name="dateFinal"
+                    value={props.values.dateFinal}
+                    onChange={props.handleChange}
                   ></Calendar>
                 </span>
               </div>
@@ -43,8 +64,9 @@ export default function Filtro() {
                 <label htmlFor="in">Data Inicial da OS</label>
                 <span>
                   <Calendar
-                    value={[]}
-                    onChange={e => this.setState({ date: e.value })}
+                    name="dateInicial"
+                    value={props.values.dateInicial}
+                    onChange={props.handleChange}
                   ></Calendar>
                 </span>
               </div>
@@ -53,21 +75,22 @@ export default function Filtro() {
               <div className="p-col-3">
                 <label htmlFor="in">Responsável pela OS</label>
                 <span>
-                  <InputText
-                    id="in"
-                    value={[]}
-                    onChange={e => this.setState({ value: e.target.value })}
+                  <Dropdown
+                    name="responsavel"
+                    value={props.values.responsavel}
+                    options={responsavel}
+                    onChange={props.handleChange}
+                    placeholder="Status da OS"
                   />
                 </span>
               </div>
               <div className="p-col-3">
                 <label htmlFor="in">Status da OS</label>
                 <Dropdown
-                  value={[]}
-                  options={citySelectItems}
-                  onChange={e => {
-                    this.setState({ city: e.value });
-                  }}
+                  name="status"
+                  value={props.values.status}
+                  options={statusArray}
+                  onChange={props.handleChange}
                   placeholder="Status da OS"
                 />
               </div>

@@ -7,19 +7,36 @@ import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
 import { adicionarOsAction } from "../../actions/osAction";
+import { useSelector } from "react-redux";
 
 export default function AdicionarOS({ toggle, visible, onHide }) {
+  const data = useSelector(state => state.OsReducer.data);
+  const res = useSelector(state => state.LoginReducer.name);
+
   const initialValues = {
-    descricao: ""
+    descricao: "",
+    numero: "",
+    responsavel: "",
+    description: "",
+    status: "",
+    valor: "",
+    date: "",
+    observacao: ""
   };
   const dispatch = useDispatch();
 
-  const citySelectItems = [
-    { label: "New York", value: "NY" },
-    { label: "Rome", value: "RM" },
-    { label: "London", value: "LDN" },
-    { label: "Istanbul", value: "IST" },
-    { label: "Paris", value: "PRS" }
+  const responsavel = [
+    { label: "Danilo", value: "Danilo" },
+    { label: "Jilmar", value: "Jilmar" },
+    { label: "Bruno", value: "Bruno" },
+    { label: "Aroldo", value: "Aroldo" }
+  ];
+
+  const statusArray = [
+    { label: "pendente", value: "pendente" },
+    { label: "cancelada", value: "cancelada" },
+    { label: "execução", value: "execução" },
+    { label: "concluida", value: "concluida" }
   ];
 
   const myIcon = (
@@ -71,7 +88,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                   <Dropdown
                     name="responsavel"
                     value={props.values.responsavel}
-                    options={citySelectItems}
+                    options={responsavel}
                     onChange={props.handleChange}
                     placeholder="Selecione o Responsável"
                   />
@@ -82,16 +99,16 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                   <input
                     className="p-inputtext p-component"
                     name="description"
-                    value={props.values.numeroOs}
+                    value={props.values.description}
                     onChange={props.handleChange}
-                    placeholder="Descrição"
+                    placeholder="Técnico"
                   />
                 </div>
                 <div className="p-col">
                   <Dropdown
                     name="status"
-                    value={props.values.responsavel}
-                    options={citySelectItems}
+                    value={props.values.status}
+                    options={statusArray}
                     onChange={props.handleChange}
                     placeholder="Status da Os"
                   />

@@ -56,10 +56,25 @@ export const setEstadoInicial = () => ({
 });
 
 export const getOsAction = () => async dispatch => {
-  console.log(dispatch, "dispatch");
   try {
     const { data } = await api.get("/os");
     dispatch(setDadosOS(data));
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text:
+        "Ocorreu um erro ao tentar buscar as os! Tente novamente mais tarde."
+    });
+  }
+};
+
+export const getBuscarFiltro = values => async dispatch => {
+  console.log(values);
+  const filtro = values;
+  try {
+    const { data } = await api.get(`/os/`);
+    //dispatch(setDadosOS(data));
   } catch (error) {
     Swal.fire({
       icon: "error",
