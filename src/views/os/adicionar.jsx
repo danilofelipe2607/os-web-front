@@ -8,6 +8,8 @@ import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
 import { adicionarOsAction } from "../../actions/osAction";
 import { useSelector } from "react-redux";
+import { adicionarOsValidador } from "../../utils/validador";
+import { format, parseISO } from "date-fns";
 
 export default function AdicionarOS({ toggle, visible, onHide }) {
   const data = useSelector(state => state.OsReducer.data);
@@ -20,7 +22,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
     description: "",
     status: "",
     valor: "",
-    date: "",
+    date: new Date(),
     observacao: ""
   };
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
   const statusArray = [
     { label: "pendente", value: "pendente" },
     { label: "cancelada", value: "cancelada" },
-    { label: "execução", value: "execução" },
+    { label: "Em andamento", value: "andamento" },
     { label: "concluida", value: "concluida" }
   ];
 
@@ -80,8 +82,10 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                     className="p-inputtext p-component"
                     name="numero"
                     value={props.values.numeroOs}
+                    onBlur={props.handleBlur}
                     onChange={props.handleChange}
                     placeholder="Número da Os"
+                    required={true}
                   />
                 </div>
                 <div className="p-col">
@@ -130,6 +134,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                     value={props.values.date}
                     onChange={props.handleChange}
                     placeholder="Data da os"
+                    dateFormat="dd/mm/yy"
                   />
                 </div>
               </div>

@@ -3,20 +3,16 @@ import { useTable, usePagination } from "react-table";
 import styled from "styled-components";
 
 const Styles = styled.div`
-  padding: 1rem;
+  padding: 0rem;
   table {
     padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     font-weight: bold;
-    border-spacing: 2;
-    width: 950px;
-    border: 2px solid black;
+    width: 100%;
     background: white;
-    border-radius: 5px;
     tr {
-      text-align: left;
       border-top: 1px solid #e7eaec;
       line-height: 1.42857;
       padding: 8px;
@@ -29,6 +25,7 @@ const Styles = styled.div`
     }
     th,
     td {
+      text-align: left;
       border-top: 1px solid #e7eaec;
       line-height: 1.42857;
       padding: 8px;

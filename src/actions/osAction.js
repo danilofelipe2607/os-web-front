@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import hash from "react-router-history";
 
+import { format, parseISO, parse } from "date-fns";
 import api from "../utils/api";
 import * as a from "../utils/actionTypes";
 
@@ -12,10 +13,7 @@ export const adicionarOsAction = values => async dispatch => {
       ...values
     };
     const response = await api.post("/os", data);
-
     if (response) {
-      //dispatch({ type: a.LOGIN_SET_SUCESS, payload: data.token });
-
       Swal.fire({
         icon: "success",
         title: `Adicionado com sucesso!`,
@@ -30,7 +28,7 @@ export const adicionarOsAction = values => async dispatch => {
         }
       });
 
-      hashHistory.push("/os");
+      dispatch(setEstadoInicial());
     } else {
       Swal.fire({
         icon: "error",
@@ -71,9 +69,29 @@ export const getOsAction = () => async dispatch => {
 
 export const getBuscarFiltro = values => async dispatch => {
   try {
-    console.log(values);
     const { data } = await api.post("/osfiltro", values);
-    //dispatch(setDadosOS(data));
+    dispatch(setDadosOS(data));
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text:
+        "Ocorreu um erro ao tentar buscar as os! Tente novamente mais tarde."
+    });
+  }
+};
+
+export const deleteOs = item => async dispatch => {
+  try {
+    const numeroOs = item.numero;
+    const { data } = await api.delete(`/os/${numeroOs}`);
+    if (data) {
+      dispatch(setDadosOS(data));
+      Swal.fire({
+        icon: "success",
+        title: `Deletado com sucesso!`
+      });
+    }
   } catch (error) {
     Swal.fire({
       icon: "error",

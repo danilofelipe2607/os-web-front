@@ -3,8 +3,12 @@ import styled from "styled-components";
 import Table from "./components/table";
 import { format, parseISO } from "date-fns";
 import { Button } from "primereact/button";
+import { useDispatch } from "react-redux";
+import { deleteOs } from "../../actions/osAction";
 
-function Grid({ data }) {
+export default function Grid({ data }) {
+  const dispatch = useDispatch();
+
   const dataOs = data.map(item => {
     return {
       ...item,
@@ -12,44 +16,44 @@ function Grid({ data }) {
     };
   });
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Lista de Orçamentos de Serviços",
-        columns: [
-          { Header: "Número OS", accessor: "numero" },
-          { Header: "Data", accessor: "date" },
-          { Header: "Responsável", accessor: "responsavel" },
-          { Header: "Status", accessor: "status" },
-          {
-            Header: "Ação",
-            accessor: "teste",
-            Cell: ({ cell }) => {
-              return (
-                <>
-                  <Button
-                    label="Editar"
-                    icon="pi pi-check"
-                    iconPos="right"
-                    style={{ width: "100px", marginRight: "10px" }}
-                  />
-                  <Button
-                    label="Excluir"
-                    icon="pi pi-check"
-                    iconPos="right"
-                    style={{ width: "100px" }}
-                  />
-                </>
-              );
-            }
+  function deleteItem(values) {
+    dispatch(deleteOs(values));
+  }
+  const columns = React.useMemo(() => [
+    {
+      Header: "Lista de Os",
+      columns: [
+        { Header: "Número", accessor: "numero" },
+        { Header: "Descrição", accessor: "descricao" },
+        { Header: "Data", accessor: "date" },
+        { Header: "Responsável", accessor: "responsavel" },
+        {
+          Header: "Status",
+          accessor: "status"
+        },
+        {
+          Header: "Ação",
+          accessor: "teste",
+          Cell: ({ cell }) => {
+            return (
+              <>
+                <Button
+                  icon="pi pi-search"
+                  className="p-button-warning"
+                  style={{ marginRight: "10px " }}
+                />
+                <Button
+                  icon="pi pi-times"
+                  className="p-button-danger"
+                  onClick={() => deleteItem(cell.row.values)}
+                />
+              </>
+            );
           }
-        ]
-      }
-    ],
-    []
-  );
+        }
+      ]
+    }
+  ]);
 
   return <Table columns={columns} data={dataOs} />;
 }
-
-export default Grid;

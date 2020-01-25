@@ -61,8 +61,15 @@ export default function OsIndex() {
         <Filtro />
       </Panel>
       <br />
-
-      <Grid data={data} />
+      <Panel
+        header="Orçamentos"
+        style={{
+          width: "100%",
+          marginBottom: "10px"
+        }}
+      >
+        <Grid data={data} />
+      </Panel>
     </div>
   );
 }

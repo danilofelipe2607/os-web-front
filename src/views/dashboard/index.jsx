@@ -1,43 +1,51 @@
-import React, { Component } from "react";
-import { CarService } from "../../service/CarService";
+import React, { useState, useEffect } from "react";
 import { Panel } from "primereact/panel";
-import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
-import { Dropdown } from "primereact/dropdown";
-import { InputText } from "primereact/inputtext";
-import { Chart } from "primereact/chart";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { FullCalendar } from "primereact/fullcalendar";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import timeGridPlugin from "@fullcalendar/timegrid";
+import { useDispatch, useSelector } from "react-redux";
+import { getOsAction } from "../../actions/osAction";
+import { ProgressBar } from "primereact/progressbar";
 
 export default function DashboardIndex() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function load() {
+      dispatch(getOsAction());
+    }
+    load();
+  }, []);
+  const data = useSelector(state => state.OsReducer.data);
+  console.log(data);
+  const totalOsAberta = data.filter(c => c.status === "pendente").length;
+  const totalOsAndamento = data.filter(c => c.status === "andamento").length;
+  const totalOsFinalizadas = data.filter(c => c.status === "concluida").length;
+
+  console.log("teds", totalOsFinalizadas);
   return (
     <div className="p-grid p-fluid dashboard">
       <div className="p-col-12 p-lg-4">
         <div className="card summary">
           <span className="title">OS</span>
           <span className="detail">Número de os abertas</span>
-          <span className="count visitors">12</span>
+          <span className="count visitors">{totalOsAberta}</span>
         </div>
       </div>
       <div className="p-col-12 p-lg-4">
         <div className="card summary">
           <span className="title">OS</span>
           <span className="detail">Número de os em andamento</span>
-          <span className="count purchases">534</span>
+          <span className="count purchases">{totalOsAndamento}</span>
         </div>
       </div>
       <div className="p-col-12 p-lg-4">
         <div className="card summary">
           <span className="title">OS</span>
-          <span className="detail">Número de os executadas</span>
-          <span className="count revenue">$3,200</span>
+          <span className="detail">Número de os concluídas</span>
+          <span className="count revenue">{totalOsFinalizadas}</span>
         </div>
       </div>
-
+      {/* 
       <div className="p-col-12 p-lg-6" style={{ width: "645px" }}>
         <div className="card">
           <h1 style={{ fontSize: "16px" }}>Orçamentos Recentes</h1>
@@ -57,16 +65,15 @@ export default function DashboardIndex() {
         </div>
       </div>
 
-      <div className="p-col-12 p-lg-4" style={{ width: "325px" }}>
-        <Panel header="Últimas Atividades" style={{ height: "100%" }}>
+      <div className="p-col-12 p-lg-4" style={{ width: "430px" }}>
+        <Panel
+          header="Últimas Atividades"
+          style={{ height: "100%", width: "100%" }}
+        >
           <div className="activity-header">
             <div className="p-grid">
-              <div className="p-col-6">
-                <span style={{ fontWeight: "bold" }}>Last Activity</span>
-                <p>Updated 1 minute ago</p>
-              </div>
               <div className="p-col-6" style={{ textAlign: "right" }}>
-                <Button label="Refresh" icon="pi pi-refresh" />
+                <Button label="Atualizar" icon="pi pi-refresh" />
               </div>
             </div>
           </div>
@@ -75,7 +82,9 @@ export default function DashboardIndex() {
             <li>
               <div className="count">$900</div>
               <div className="p-grid">
-                <div className="p-col-6">Income</div>
+                <div className="p-col-6">
+                  <ProgressBar value={[]} />
+                </div>
                 <div className="p-col-6">95%</div>
               </div>
             </li>
@@ -126,7 +135,7 @@ export default function DashboardIndex() {
             </li>
           </ul>
         </Panel>
-      </div>
+      </div> */}
     </div>
   );
 }

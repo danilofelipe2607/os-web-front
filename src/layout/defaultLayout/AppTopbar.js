@@ -13,7 +13,7 @@ export class AppTopbar extends Component {
 
   render() {
     return (
-      <div className="layout-topbar clearfix" style={{ background: "green" }}>
+      <div className="layout-topbar clearfix" style={{ background: "#4d505b" }}>
         <button
           className="p-link layout-menu-button"
           onClick={this.props.onToggleMenu}

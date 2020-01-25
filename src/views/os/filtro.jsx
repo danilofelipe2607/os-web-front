@@ -5,13 +5,14 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
 import { getBuscarFiltro } from "../../actions/osAction";
+import { filtroValidator } from "../../utils/validador";
 import { useDispatch } from "react-redux";
-
+import { format, parseISO } from "date-fns";
 export default function Filtro() {
   const dispatch = useDispatch();
   const initialValues = {
-    dateFinal: "",
-    dateInicial: "",
+    dateFinal: new Date(),
+    dateInicial: new Date(),
     status: "",
     numero: "",
     responsavel: ""
@@ -35,10 +36,24 @@ export default function Filtro() {
   }
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={getBuscar}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={getBuscar}
+        validationSchema={filtroValidator}
+      >
         {props => (
           <form onSubmit={props.handleSubmit}>
             <div className="p-grid p-align-center">
+              <div className="p-col-3">
+                <label>Descrição</label>
+                <span>
+                  <InputText
+                    name="descricao"
+                    value={props.values.descricao}
+                    onChange={props.handleChange}
+                  />
+                </span>
+              </div>
               <div className="p-col-3">
                 <label>Número da OS</label>
                 <span>
@@ -51,23 +66,26 @@ export default function Filtro() {
               </div>
 
               <div className="p-col-3">
-                <label htmlFor="in">Data Final da OS</label>
-                <span>
-                  <Calendar
-                    name="dateFinal"
-                    value={props.values.dateFinal}
-                    onChange={props.handleChange}
-                  ></Calendar>
-                </span>
-              </div>
-              <div className="p-col-3">
                 <label htmlFor="in">Data Inicial da OS</label>
                 <span>
                   <Calendar
                     name="dateInicial"
                     value={props.values.dateInicial}
                     onChange={props.handleChange}
-                  ></Calendar>
+                    dateFormat="dd/mm/yy"
+                  />
+                </span>
+              </div>
+
+              <div className="p-col-3">
+                <label htmlFor="in">Data Final da OS</label>
+                <span>
+                  <Calendar
+                    name="dateFinal"
+                    value={props.values.dateFinal}
+                    onChange={props.handleChange}
+                    dateFormat="dd/mm/yy"
+                  />
                 </span>
               </div>
             </div>
