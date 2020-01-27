@@ -14,14 +14,14 @@ export default function Grid({ data }) {
 
   const [EditVisible, setEditVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [itemEdit, setItemEdit] = useState("");
+  const [itemEdit, setItemEdit] = useState(null);
 
   async function editarOS(values) {
     setItemEdit(values);
-    setEditVisible(true);
   }
+  
   function hideEditarOs() {
-    setEditVisible(false);
+    setItemEdit(null);
   }
 
   const dataOs = data.map(item => {
@@ -40,6 +40,7 @@ export default function Grid({ data }) {
       columns: [
         { Header: "Número", accessor: "numero" },
         { Header: "Descrição", accessor: "descricao" },
+        { Header: "Valor", accessor: "valor" },
         { Header: "Data", accessor: "date" },
         { Header: "Responsável", accessor: "responsavel" },
         {
@@ -149,11 +150,7 @@ export default function Grid({ data }) {
   return (
     <>
       <Table columns={columns} data={dataOs} />
-      <EditarOS
-        itemEdit={itemEdit}
-        EditVisible={EditVisible}
-        hideEditarOs={hideEditarOs}
-      />
+      {itemEdit && <EditarOS itemEdit={itemEdit} hideEditarOs={hideEditarOs} />}
     </>
   );
 }

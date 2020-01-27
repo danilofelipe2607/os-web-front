@@ -53,10 +53,11 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
         // footer={footer}
         // iconsTemplate={myIcon}
         header="Editar OS"
-        visible={EditVisible}
-        style={{ width: "50vw" }}
+        visible
+        style={{ width: "50" }}
         modal={true}
         onHide={hideEditarOs}
+        focusOnShow
       >
         <Formik
           onSubmit={EditarOS}
@@ -128,13 +129,13 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
                   />
                 </div>
                 <div className="p-col">
-                  <Calendar
+                  {/* <Calendar
                     name="date"
                     value={props.values.date}
                     onChange={props.handleChange}
                     placeholder="Data da os"
                     dateFormat="dd/mm/yy"
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="p-grid" style={{ marginBottom: "50px" }}>
