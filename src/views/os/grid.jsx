@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import Table from "./components/table";
 import { format, parseISO } from "date-fns";
 import { Button } from "primereact/button";
 import { useDispatch } from "react-redux";
 import { deleteOs } from "../../actions/osAction";
-import { ProgressSpinner } from "primereact/progressspinner";
 import EditarOS from "./editar";
-import { Badge } from "reactstrap";
 
 export default function Grid({ data }) {
   const dispatch = useDispatch();
