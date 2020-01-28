@@ -19,7 +19,7 @@ export default function Grid({ data }) {
   async function editarOS(values) {
     setItemEdit(values);
   }
-  
+
   function hideEditarOs() {
     setItemEdit(null);
   }
@@ -60,9 +60,6 @@ export default function Grid({ data }) {
                       textAlign: "left"
                     }}
                   />
-                  <Badge className=" p-button-warning" pill>
-                    Primary
-                  </Badge>
                 </>
               );
             }

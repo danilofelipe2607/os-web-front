@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 export const TOKEN_KEY = "Authorization";
 
 export const isAuthenticated = () => {
-  const decodedToken = jwt.decode(localStorage.getItem(TOKEN_KEY));
+  const decodedToken = jwt.decode(sessionStorage.getItem(TOKEN_KEY));
 
   if (decodedToken) {
     if (decodedToken.exp < new Date().getTime()) {
@@ -14,12 +14,12 @@ export const isAuthenticated = () => {
   return false;
 };
 
-export const getToken = () => localStorage.getItem(TOKEN_KEY);
+export const getToken = () => sessionStorage.getItem(TOKEN_KEY);
 
 export const login = token => {
-  localStorage.setItem(TOKEN_KEY, token);
+  sessionStorage.setItem(TOKEN_KEY, token);
 };
 
 export const logout = () => {
-  localStorage.removeItem(TOKEN_KEY);
+  sessionStorage.removeItem(TOKEN_KEY);
 };

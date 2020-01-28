@@ -15,7 +15,7 @@ export const realizarLoginAction = values => async dispatch => {
     console.log("data", data);
     if (data.token) {
       dispatch({ type: a.LOGIN_SET_SUCESS, payload: data });
-      localStorage.setItem("Authorization", data.token);
+      sessionStorage.setItem("Authorization", data.token);
       hashHistory.push("/dashboard");
       Swal.fire({
         icon: "success",
