@@ -1,6 +1,9 @@
 {
   "name": "os-web",
   "version": "1.0",
+  "engines": {
+    "node": "12.13.0"
+  },
   "homepage": "/os-web-react",
   "private": false,
   "repository": {
