@@ -12,8 +12,6 @@ import { Badge } from "reactstrap";
 export default function Grid({ data }) {
   const dispatch = useDispatch();
 
-  const [EditVisible, setEditVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [itemEdit, setItemEdit] = useState(null);
 
   async function editarOS(values) {

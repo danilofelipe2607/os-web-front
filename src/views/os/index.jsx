@@ -21,7 +21,6 @@ export default function OsIndex() {
   }, []);
 
   const data = useSelector(state => state.OsReducer.data);
-
   function toggle() {
     setVisible(true);
   }
@@ -30,7 +29,6 @@ export default function OsIndex() {
     setVisible(false);
   }
 
- 
   return (
     <div className="p-grid p-fluid dashboard">
       <div
