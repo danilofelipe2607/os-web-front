@@ -1,9 +1,6 @@
 {
   "name": "os-web",
   "version": "1.0",
-  "engines": {
-    "yarn": "1.x"
-  },
   "homepage": "/os-web-react",
   "private": false,
   "repository": {
