@@ -53,7 +53,7 @@ function Routes() {
           <PublicRoutes
             token={token}
             path="/auth"
-            component={() => <AuthLayout />}
+            component={props => <AuthLayout {...props} />}
           />
           <Redirect from="/" to="/auth/login" />
         </Switch>

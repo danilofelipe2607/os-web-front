@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { Button } from "primereact/button";
 import logo from "../../assets/img/logo.png";
 import { Routes } from "../../routes/routes";
-
+import AdminIndex from "../../views/admin";
 import "./style.css";
 export default function AdminLayout() {
   function getRoutes(routes) {
@@ -26,7 +26,8 @@ export default function AdminLayout() {
   return (
     <div className="container">
       <Switch>
-        {getRoutes(Routes)}
+        {/* {getRoutes(Routes)} */}
+        <AdminIndex />
         <Redirect from="/auth" to="/auth/login" />
       </Switch>
     </div>
