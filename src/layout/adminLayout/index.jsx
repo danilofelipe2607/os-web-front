@@ -27,7 +27,8 @@ export default function AdminLayout() {
     <div className="container">
       <Switch>
         {/* {getRoutes(Routes)} */}
-        <AdminIndex />
+        <Route path="/auth"  component={AdminIndex} />
+
         <Redirect from="/auth" to="/auth/login" />
       </Switch>
     </div>
