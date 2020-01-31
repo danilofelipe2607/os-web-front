@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { useDispatch } from "react-redux";
 import { deleteOs } from "../../actions/osAction";
 import EditarOS from "./editar";
+import { print } from "./components/impressão";
 
 export default function Grid({ data }) {
   const dispatch = useDispatch();
@@ -98,6 +99,7 @@ export default function Grid({ data }) {
                   }}
                 />
                 <Button
+                  onClick={() => print()}
                   icon="pi pi-print"
                   style={{
                     marginRight: "10px ",

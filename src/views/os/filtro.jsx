@@ -125,7 +125,7 @@ export default function Filtro() {
                   className="p-button-info"
                   label="Buscar"
                   type="submit"
-                  style={{ width: "170px" }}
+                  style={{ width: "170px", backgroundColor: "#333333" }}
                 />
               </div>
             </div>

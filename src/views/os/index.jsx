@@ -42,7 +42,7 @@ export default function OsIndex() {
           <Button
             className="p-button-info"
             label="Adicionar OS"
-            style={{ width: "300px" }}
+            style={{ width: "300px", backgroundColor: "#333333" }}
             onClick={toggle}
           />
         </div>
