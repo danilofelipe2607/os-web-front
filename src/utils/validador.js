@@ -17,8 +17,9 @@ export const filtroValidator = Yup.object().shape({
 export const adicionarOsValidador = Yup.object().shape({
   date: Yup.string().required("Informe uma data válida."),
 
-  descricao: Yup.string().required("Informe uma descrição."),
-  numero: Yup.number().required("somente número")
+  descricao: Yup.string().required("Informe uma descrição"),
+  status: Yup.string().required("Informe um Status."),
+  numero: Yup.number().required("Número Obrigatório")
 });
 
 export const registerValidator = Yup.object().shape({

@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
-
+import hash from "react-router-history";
+import Swal from "sweetalert2";
 export const TOKEN_KEY = "Authorization";
+const { hashHistory } = hash;
 
 export const isAuthenticated = () => {
   const decodedToken = jwt.decode(sessionStorage.getItem(TOKEN_KEY));
@@ -21,5 +23,18 @@ export const login = token => {
 };
 
 export const logout = () => {
-  sessionStorage.removeItem(TOKEN_KEY);
+  Swal.fire({
+    icon: "warning",
+    title: `Deseja Sair do sistema?`,
+    showCloseButton: true,
+    showCancelButton: true,
+    focusConfirm: false,
+    cancelButtonText: "não",
+    confirmButtonText: "Sim"
+  }).then(result => {
+    if (result.value === true) {
+      sessionStorage.removeItem(TOKEN_KEY);
+      hashHistory.push("/");
+    }
+  });
 };

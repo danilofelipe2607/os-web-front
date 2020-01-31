@@ -20,14 +20,14 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
   console.log(itemEdit);
 
   const initialValues = {
-    descricao: "",
-    numero: "",
-    responsavel: "",
-    description: "",
-    status: "",
+    descricao: itemEdit.descricao,
+    numero: itemEdit.numero,
+    responsavel: itemEdit.responsavel,
+    description: itemEdit.description,
+    status: itemEdit.status,
     valor: itemEdit.valor,
     date: itemEdit.date,
-    observacao: ""
+    observacao: itemEdit.observacao
   };
 
   const responsavel = [
@@ -82,7 +82,7 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
                   <input
                     className="p-inputtext p-component"
                     name="numero"
-                    value={props.values.numeroOs}
+                    value={props.values.numero}
                     onBlur={props.handleBlur}
                     onChange={props.handleChange}
                     placeholder="Número da Os"

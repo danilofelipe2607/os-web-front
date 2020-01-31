@@ -9,6 +9,13 @@ const { hashHistory } = hash;
 
 export const adicionarOsAction = values => async dispatch => {
   try {
+    if (values.numero <= 0) {
+      Swal.fire({
+        icon: "error",
+        text: "Não foi possivel Adicionar uma  OS sem número!."
+      });
+      return;
+    }
     const data = {
       ...values
     };

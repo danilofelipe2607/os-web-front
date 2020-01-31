@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { InputText } from "primereact/inputtext";
 import PropTypes from "prop-types";
+import { logout } from "../../service/authService";
 
 export class AppTopbar extends Component {
   static defaultProps = {
@@ -34,9 +35,10 @@ export class AppTopbar extends Component {
             <span className="layout-topbar-item-text">Settings</span>
             <span className="layout-topbar-icon pi pi-cog" />
           </button>
-          <button className="p-link">
-            <span className="layout-topbar-item-text">User</span>
+          <button className="p-link" onClick={() => logout()}>
+            <span className="layout-topbar-item-text" />
             <span className="layout-topbar-icon pi pi-user" />
+            Sair
           </button>
         </div>
       </div>
