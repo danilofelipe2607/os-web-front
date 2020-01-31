@@ -38,6 +38,7 @@ export default function Grid({ data }) {
         { Header: "Valor", accessor: "valor" },
         { Header: "Data", accessor: "date" },
         { Header: "Responsável", accessor: "responsavel" },
+        { Header: "Técnico", accessor: "tecnico" },
         {
           Header: "Status",
           accessor: "status",
@@ -45,31 +46,18 @@ export default function Grid({ data }) {
             if (cell.row.values.status === "pendente") {
               return (
                 <>
-                  <Button
-                    label="pendente"
-                    className=" p-button-warning"
-                    style={{
-                      borderRadius: "10px",
-                      width: "100px",
-                      height: "30px",
-                      textAlign: "left"
-                    }}
-                  />
+                  <span style={{ fontWeight: "bold", color: "yellow" }}>
+                    Pendente
+                  </span>
                 </>
               );
             }
             if (cell.row.values.status === "andamento") {
               return (
                 <>
-                  <Button
-                    label="andamento"
-                    style={{
-                      borderRadius: "10px",
-                      width: "100px",
-                      height: "30px",
-                      textAlign: "center"
-                    }}
-                  />
+                  <span style={{ fontWeight: "bold", color: "blue" }}>
+                    Andamento
+                  </span>
                 </>
               );
             }
@@ -77,32 +65,18 @@ export default function Grid({ data }) {
             if (cell.row.values.status === "concluida") {
               return (
                 <>
-                  <Button
-                    label="concluida"
-                    className="p-button-success"
-                    style={{
-                      borderRadius: "10px",
-                      width: "100px",
-                      height: "30px",
-                      textAlign: "center"
-                    }}
-                  />
+                  <span style={{ fontWeight: "bold", color: "green" }}>
+                    Concluida
+                  </span>
                 </>
               );
             }
             if (cell.row.values.status === "cancelada") {
               return (
                 <>
-                  <Button
-                    label="cancelada"
-                    className="p-button-danger"
-                    style={{
-                      borderRadius: "10px",
-                      width: "100px",
-                      height: "30px",
-                      textAlign: "center"
-                    }}
-                  />
+                  <span style={{ fontWeight: "bold", color: "red" }}>
+                    Cancelada
+                  </span>
                 </>
               );
             }
@@ -117,20 +91,40 @@ export default function Grid({ data }) {
                 <Button
                   icon="pi pi-check"
                   className="p-button-success"
-                  style={{ marginRight: "10px " }}
+                  style={{
+                    marginRight: "10px ",
+                    height: "25px",
+                    width: "25px"
+                  }}
                 />
-                <Button icon="pi pi-print" style={{ marginRight: "10px " }} />
+                <Button
+                  icon="pi pi-print"
+                  style={{
+                    marginRight: "10px ",
+                    height: "25px",
+                    width: "25px"
+                  }}
+                />
 
                 <Button
                   icon="pi pi-search"
                   className="p-button-warning"
-                  style={{ marginRight: "10px " }}
+                  style={{
+                    marginRight: "10px ",
+                    height: "25px",
+                    width: "25px"
+                  }}
                   onClick={() => editarOS(cell.row.values)}
                 />
                 <Button
                   icon="pi pi-times"
                   className="p-button-danger"
                   onClick={() => deleteItem(cell.row.values)}
+                  style={{
+                    marginRight: "10px ",
+                    height: "25px",
+                    width: "25px"
+                  }}
                 />
               </>
             );

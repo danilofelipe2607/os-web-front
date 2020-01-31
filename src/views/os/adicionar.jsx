@@ -149,7 +149,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                   />
                 </div>
               </div>
-              <div className="p-grid" style={{ marginBottom: "50px" }}>
+              <div className="p-grid" style={{ marginBottom: "10px" }}>
                 <div className="p-col">
                   <label>Observação:</label>
                   <InputTextarea

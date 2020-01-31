@@ -17,6 +17,7 @@ import "@fullcalendar/timegrid/main.css";
 import "./layout.scss";
 import "./App.scss";
 import ScrollToTop from "../../ScrollToTop";
+import logoOs from "../../assets/img/logo.png";
 
 class defaultLayout extends Component {
   constructor() {
@@ -161,7 +162,7 @@ class defaultLayout extends Component {
             onClick={this.onSidebarClick}
           >
             <div className="layout-logo">
-              <img alt="Logo" src={logo} />
+              <img src={logoOs} />
             </div>
             <AppProfile />
             <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} />

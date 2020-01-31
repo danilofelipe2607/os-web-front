@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Styles = styled.div`
   padding: 0rem;
   table {
-    padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -28,7 +27,7 @@ const Styles = styled.div`
       text-align: left;
       border-top: 1px solid #e7eaec;
       line-height: 1.42857;
-      padding: 8px;
+      padding: 5px;
       vertical-align: top;
       :last-child {
         border-right: 0;
@@ -119,13 +118,13 @@ export default function Table({ columns, data }) {
               {">>"}
             </button>{" "}
             <span>
-              Page{" "}
+              Página{" "}
               <strong>
-                {pageIndex + 1} of {pageOptions.length}
+                {pageIndex + 1} de {pageOptions.length}
               </strong>{" "}
             </span>
             <span>
-              | Go to page:{" "}
+              Página :
               <input
                 type="number"
                 defaultValue={pageIndex + 1}
@@ -144,7 +143,7 @@ export default function Table({ columns, data }) {
             >
               {[10, 20, 30, 40, 50].map(pageSize => (
                 <option key={pageSize} value={pageSize}>
-                  Show {pageSize}
+                  Mostrar {pageSize}
                 </option>
               ))}
             </select>
