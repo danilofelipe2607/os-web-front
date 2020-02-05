@@ -8,12 +8,8 @@ import {
   PDFDownloadLink,
   Image
 } from "@react-pdf/renderer";
-import ReactPDF from "@react-pdf/renderer";
-import ReactDOM from "react-dom";
-import { render } from "react-dom";
-import { PDFViewer } from "@react-pdf/renderer";
-
 import { Button } from "primereact/button";
+
 // Create styles
 const styles = StyleSheet.create({
   page: {

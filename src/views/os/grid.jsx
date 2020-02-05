@@ -5,7 +5,8 @@ import { Button } from "primereact/button";
 import { useDispatch } from "react-redux";
 import { deleteOs } from "../../actions/osAction";
 import EditarOS from "./editar";
-import ButtonDownload from "./components/teste";
+// import ButtonDownload from "./components/teste";
+import ImpressaoAcao from "./components/acoes";
 import {
   Page,
   Text,
@@ -107,7 +108,11 @@ export default function Grid({ data }) {
                     width: "25px"
                   }}
                 />
-                <ButtonDownload cell={cell.row.values} />
+                <Button
+                  icon="pi pi-print"
+                  onClick={() => ImpressaoAcao(cell.row.values)}
+                />
+                {/* <ButtonDownload cell={cell.row.values} /> */}
                 <Button
                   icon="pi pi-search"
                   className="p-button-warning"
