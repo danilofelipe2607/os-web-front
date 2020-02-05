@@ -44,7 +44,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
     { label: "Aroldo", value: "Aroldo" }
   ];
   const statusInicial = [{ label: "pendente", value: "pendente" }];
-  console.log(statusInicial[0]);
+
 
   const myIcon = (
     <button className="p-dialog-titlebar-icon p-link">
@@ -93,7 +93,6 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                     onChange={props.handleChange}
                     placeholder="Número da Os"
                     error={props.errors.numero}
-                    touched={console.log(props)}
                   />
                 </div>
                 <div className="p-col">
@@ -125,7 +124,6 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
                     value={props.values.status}
                     options={statusArray}
                     onChange={props.handleChange}
-                    error={console.log(value, field)}
                   />
                 </div>
               </div>

@@ -13,10 +13,7 @@ import { format, parseISO } from "date-fns";
 import { ProgressSpinner } from "primereact/progressspinner";
 
 export default function Form({ itemEdit }) {
-  console.log(itemEdit, "sdasdas");
   const dispatch = useDispatch();
-
-  console.log(itemEdit);
 
   const initialValues = {
     descricao: "",

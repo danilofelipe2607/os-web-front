@@ -5,7 +5,15 @@ import { Button } from "primereact/button";
 import { useDispatch } from "react-redux";
 import { deleteOs } from "../../actions/osAction";
 import EditarOS from "./editar";
-import { print } from "./components/impressão";
+import ButtonDownload from "./components/teste";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  PDFDownloadLink
+} from "@react-pdf/renderer";
 
 export default function Grid({ data }) {
   const dispatch = useDispatch();
@@ -30,6 +38,7 @@ export default function Grid({ data }) {
   function deleteItem(values) {
     dispatch(deleteOs(values));
   }
+
   const columns = React.useMemo(() => [
     {
       Header: "Lista de Os",
@@ -98,16 +107,7 @@ export default function Grid({ data }) {
                     width: "25px"
                   }}
                 />
-                <Button
-                  onClick={() => print()}
-                  icon="pi pi-print"
-                  style={{
-                    marginRight: "10px ",
-                    height: "25px",
-                    width: "25px"
-                  }}
-                />
-
+                <ButtonDownload cell={cell.row.values} />
                 <Button
                   icon="pi pi-search"
                   className="p-button-warning"

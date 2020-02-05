@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { renderToString } from "react-dom/server";
+import { Button } from "primereact/button";
 import jsPDF from "jspdf";
 
 const styles = {
@@ -11,38 +12,28 @@ const colstyle = {
   width: "30%"
 };
 const tableStyle = {
-  width: "100%"
+  backgroundColor: "red",
+  borderRadius: 20,
+  borderWidth: 20,
+  borderColor: "black"
 };
 const Prints = () => (
-  <table
-    id="tab_customers"
-    class="table table-striped"
-    style={{ width: "1800px" }}
-  >
-    <colgroup>
-      <col span="1" style={colstyle} />
-      <col span="1" style={colstyle} />
-    </colgroup>
-    <thead>
-      <tr class="warning">
-        <th>ORDEM DE SERVIÇO</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Data do Serviço:______/______/______ </td>
-      </tr>
-      <tr>
-        <td>Data do Serviço:______/______/______ </td>
-      </tr>
-    </tbody>
-  </table>
+  <html>
+    <div style={{ width: "1800px" }}>
+      <div>
+        <span>Teste</span>
+      </div>
+      <div>
+        <p>Data do Serviço:______/______/______</p>
+      </div>
+    </div>
+  </html>
 );
 
 export const print = () => {
   const string = renderToString(<Prints />);
   const pdf = new jsPDF("p", "mm", "a4");
-  pdf.fromHTML(string);
+  pdf.fromHTML(renderToString(<Prints />));
   pdf.save("pdf");
 };
 

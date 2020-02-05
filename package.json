@@ -8,7 +8,7 @@
     "url": "https://github.com/primefaces/sigma.git"
   },
   "engines": {
-    "node": "12.14.1",
+    "node": "10.16.1",
     "yarn": "1.x"
   },
   "license": "MIT",
@@ -17,6 +17,7 @@
     "@fullcalendar/daygrid": "4.0.1",
     "@fullcalendar/interaction": "4.0.2",
     "@fullcalendar/timegrid": "4.0.1",
+    "@react-pdf/renderer": "1.6.3",
     "axios": "^0.19.1",
     "chart.js": "2.7.3",
     "classnames": "^2.2.6",
@@ -25,7 +26,6 @@
     "heroku": "^7.37.0",
     "history": "^4.10.1",
     "jsonwebtoken": "^8.5.1",
-    "jspdf": "^1.5.3",
     "namor": "^2.0.2",
     "node-sass": "^4.12.0",
     "primeflex": "1.0.0-rc.1",
