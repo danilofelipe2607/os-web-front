@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React  from "react";
 import { useDispatch } from "react-redux";
-import { Formik, useFormik } from "formik";
+import { Formik } from "formik";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
-import { Calendar } from "primereact/calendar";
 import { InputTextarea } from "primereact/inputtextarea";
 import { adicionarOsAction } from "../../actions/osAction";
-import { useSelector } from "react-redux";
-import { adicionarOsValidador } from "../../utils/validador";
-import { format, parseISO } from "date-fns";
-
-import { ProgressSpinner } from "primereact/progressspinner";
+import ButtonDownload from "./components/print";
 
 export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
 
+  
   const dispatch = useDispatch();
-
-
 
   const initialValues = {
     descricao: itemEdit.descricao,
@@ -66,7 +60,7 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
         >
           {props => (
             <div>
-              <div className="p-grid" style={{ marginTop: "50px" }}>
+              <div className="p-grid" style={{ marginTop: "10px" }}>
                 <div className="p-col">
                   <input
                     className="p-inputtext p-component"
@@ -138,7 +132,7 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
                   /> */}
                 </div>
               </div>
-              <div className="p-grid" style={{ marginBottom: "50px" }}>
+              <div className="p-grid" style={{ marginBottom: "15px" }}>
                 <div className="p-col">
                   <InputTextarea
                     name="observacao"
@@ -150,22 +144,27 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
                   />
                 </div>
               </div>
-              <div className="p-grid" style={{ marginBottom: "50px" }}>
+              <div className="p-grid" style={{ marginBottom: "15px" }}>
                 <div className="p-col">
-                  <Button
-                    label="Adicionar Os"
-                    className="p-button-success"
-                    icon="pi pi-check"
-                    type="submit"
-                    onClick={props.handleSubmit}
-                  />
+                  <ButtonDownload itemEdit={itemEdit} />
                 </div>
+              </div>
+              <div className="p-grid" style={{ marginBottom: "15px" }}>
                 <div className="p-col">
                   <Button
                     label="Sair"
                     className="p-button-danger"
                     icon="pi pi-times"
                     onClick={hideEditarOs}
+                  />
+                </div>
+                <div className="p-col">
+                  <Button
+                    label="Editar Os"
+                    className="p-button-success"
+                    icon="pi pi-check"
+                    type="submit"
+                    onClick={props.handleSubmit}
                   />
                 </div>
               </div>

@@ -5,8 +5,10 @@ import { Button } from "primereact/button";
 import { useDispatch } from "react-redux";
 import { deleteOs } from "../../actions/osAction";
 import EditarOS from "./editar";
-// import ButtonDownload from "./components/teste";
-import ImpressaoAcao from "./components/acoes";
+import ButtonDownload from "./components/print";
+import Swal from "sweetalert2";
+import { Message } from "primereact/message";
+// import ImpressaoAcao from "./components/acoes";
 import {
   Page,
   Text,
@@ -15,11 +17,13 @@ import {
   StyleSheet,
   PDFDownloadLink
 } from "@react-pdf/renderer";
+import testeimp from "./components/print";
 
 export default function Grid({ data }) {
   const dispatch = useDispatch();
 
   const [itemEdit, setItemEdit] = useState(null);
+  const [count, setCount] = useState(false);
 
   async function editarOS(values) {
     setItemEdit(values);
@@ -37,7 +41,19 @@ export default function Grid({ data }) {
   });
 
   function deleteItem(values) {
-    dispatch(deleteOs(values));
+    Swal.fire({
+      icon: "question",
+      title: `Realmente deseja deletar?`,
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: "Deletar",
+      cancelButtonText: "não"
+    }).then(result => {
+      if (result.value === true) {
+        dispatch(deleteOs(values));
+      }
+    });
   }
 
   const columns = React.useMemo(() => [
@@ -47,9 +63,7 @@ export default function Grid({ data }) {
         { Header: "Número", accessor: "numero" },
         { Header: "Descrição", accessor: "descricao" },
         { Header: "Valor", accessor: "valor" },
-        { Header: "Data", accessor: "date" },
-        { Header: "Responsável", accessor: "responsavel" },
-        { Header: "Técnico", accessor: "tecnico" },
+
         {
           Header: "Status",
           accessor: "status",
@@ -57,18 +71,14 @@ export default function Grid({ data }) {
             if (cell.row.values.status === "pendente") {
               return (
                 <>
-                  <span style={{ fontWeight: "bold", color: "yellow" }}>
-                    Pendente
-                  </span>
+                  <Message severity="info" text="Pendente"></Message>
                 </>
               );
             }
             if (cell.row.values.status === "andamento") {
               return (
                 <>
-                  <span style={{ fontWeight: "bold", color: "blue" }}>
-                    Andamento
-                  </span>
+                  <Message severity="warn" text="Andamento" />
                 </>
               );
             }
@@ -76,43 +86,28 @@ export default function Grid({ data }) {
             if (cell.row.values.status === "concluida") {
               return (
                 <>
-                  <span style={{ fontWeight: "bold", color: "green" }}>
-                    Concluida
-                  </span>
+                  <Message severity="success" text="Concluida" />
                 </>
               );
             }
             if (cell.row.values.status === "cancelada") {
               return (
                 <>
-                  <span style={{ fontWeight: "bold", color: "red" }}>
-                    Cancelada
-                  </span>
+                  <Message severity="error" text="Cancelada" />
                 </>
               );
             }
           }
         },
+        { Header: "Data", accessor: "date" },
+        { Header: "Responsável", accessor: "responsavel" },
+        { Header: "Técnico", accessor: "tecnico" },
         {
           Header: "Ação",
           accessor: "teste",
           Cell: ({ cell }) => {
             return (
               <>
-                <Button
-                  icon="pi pi-check"
-                  className="p-button-success"
-                  style={{
-                    marginRight: "10px ",
-                    height: "25px",
-                    width: "25px"
-                  }}
-                />
-                <Button
-                  icon="pi pi-print"
-                  onClick={() => ImpressaoAcao(cell.row.values)}
-                />
-                {/* <ButtonDownload cell={cell.row.values} /> */}
                 <Button
                   icon="pi pi-search"
                   className="p-button-warning"

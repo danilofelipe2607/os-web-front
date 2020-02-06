@@ -45,7 +45,6 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
   ];
   const statusInicial = [{ label: "pendente", value: "pendente" }];
 
-
   const myIcon = (
     <button className="p-dialog-titlebar-icon p-link">
       <span className="pi pi-search">2</span>
@@ -70,7 +69,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
         <Formik onSubmit={AdicionarOS} initialValues={initialValues}>
           {(props, error, value, field) => (
             <div>
-              <div className="p-grid" style={{ marginTop: "50px" }}>
+              <div className="p-grid" style={{ marginTop: "10px" }}>
                 <div className="p-col">
                   <label>Descrição:</label>
                   <input
@@ -163,7 +162,7 @@ export default function AdicionarOS({ toggle, visible, onHide }) {
               <div
                 className="p-grid"
                 style={{
-                  marginBottom: "50px",
+                  marginBottom: "15px",
                   textAlign: "center",
                   alignItems: "center"
                 }}

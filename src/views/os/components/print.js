@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
 });
 
 const ButtonDownload = cell => {
-  console.log(cell);
   const MyDoc = () => {
     return (
       <Document>
@@ -80,41 +79,17 @@ const ButtonDownload = cell => {
       </Document>
     );
   };
+
   return (
-    <PDFDownloadLink document={<MyDoc />} fileName="movielist.pdf">
-      {({ blob, url, loading, error }) => {
-        console.log(blob, url, loading, error, "Testeds");
-        // loading ? (
-        //   <Button
-        //     // onClick={() => print()}
-        //     icon="pi pi-loading"
-        //     style={{
-        //       marginRight: "10px ",
-        //       height: "25px",
-        //       width: "25px"
-        //     }}
-        //   />
-        // ) : (
-        //   <Button
-        //     // onClick={() => print()}
-        //     icon="pi pi-print"
-        //     style={{
-        //       marginRight: "10px ",
-        //       height: "25px",
-        //       width: "25px"
-        //     }}
-        //   />
-        // )
-      }}
-      <Button
-        icon="pi pi-print"
-        style={{
-          marginRight: "10px ",
-          height: "25px",
-          width: "25px"
-        }}
-      />
-    </PDFDownloadLink>
+    <>
+      <PDFDownloadLink document={<MyDoc />} fileName="teste.pdf">
+        <Button
+          icon="pi pi-print"
+          label="Imprimir Os"
+          className="p-button-print"
+        />
+      </PDFDownloadLink>
+    </>
   );
 };
 export default React.memo(ButtonDownload);
