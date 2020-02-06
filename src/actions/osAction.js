@@ -90,8 +90,8 @@ export const getBuscarFiltro = values => async dispatch => {
 
 export const deleteOs = item => async dispatch => {
   try {
-    const numeroOs = item.numero;
-    const { data } = await api.delete(`/os/${numeroOs}`);
+    const id = item.id;
+    const { data } = await api.delete(`/os/${id}`);
     if (data) {
       dispatch(setDadosOS(data));
       Swal.fire({

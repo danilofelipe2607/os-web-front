@@ -32,7 +32,7 @@ export default function Grid({ data }) {
   function hideEditarOs() {
     setItemEdit(null);
   }
-
+ 
   const dataOs = data.map(item => {
     return {
       ...item,
