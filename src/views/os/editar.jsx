@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { Dialog } from "primereact/dialog";
@@ -10,9 +10,10 @@ import ButtonDownload from "./components/print";
 import { Calendar } from "primereact/calendar";
 import { format, parseISO, parse } from "date-fns";
 
-export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
+export default function EditarOS({ itemEdit, hideEditarOs }) {
   const dispatch = useDispatch();
-  console.log(itemEdit);
+  const [hide, setHide] = useState(false);
+
   const initialValues = {
     descricao: itemEdit.descricao,
     numero: itemEdit.numero,
@@ -21,7 +22,8 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
     date: itemEdit.date,
     status: itemEdit.status,
     valor: itemEdit.valor,
-    observacao: itemEdit.observacao
+    observacao: itemEdit.observacao,
+    id: itemEdit._id
   };
 
   const responsavel = [
@@ -39,6 +41,7 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
   ];
   function EditarOS(values) {
     dispatch(editAction(values));
+    setHide(true);
   }
 
   return (

@@ -16,8 +16,10 @@ export const adicionarOsAction = values => async dispatch => {
       });
       return;
     }
+    const dataFormatada = new Date(values.Date);
     const data = {
-      ...values
+      ...values,
+      dataFormatada
     };
     const response = await api.post("/os", data);
     if (response) {
@@ -34,8 +36,6 @@ export const adicionarOsAction = values => async dispatch => {
           //impressão
         }
       });
-
-      dispatch(setEstadoInicial());
     } else {
       Swal.fire({
         icon: "error",
@@ -60,6 +60,9 @@ export const setEstadoInicial = () => ({
   type: a.INITIAL_STATE
 });
 
+export const setEstadoModalInicial = () => ({
+  type: a.INITIAL_STATE
+});
 export const getOsAction = () => async dispatch => {
   try {
     const { data } = await api.get("/os");
@@ -93,11 +96,12 @@ export const deleteOs = item => async dispatch => {
     const id = item.id;
     const { data } = await api.delete(`/os/${id}`);
     if (data) {
-      dispatch(setDadosOS(data));
+      console.log(data);
       Swal.fire({
         icon: "success",
         title: `Deletado com sucesso!`
       });
+      hashHistory.push("/os");
     }
   } catch (error) {
     Swal.fire({
@@ -111,17 +115,47 @@ export const deleteOs = item => async dispatch => {
 
 export const editAction = item => async dispatch => {
   try {
-    console.log(item, "itemmmmmmmmmm");
-    const teste = format(item.data, "dd/MM/YYYY HH:mm");
-    console.log(teste, "testeteee");
-    const { data } = await api.put("/os/", item);
-    console.log(data, "resposta");
+    console.log("itemmmmmmmmmmmmmmmmmmmmmm", item);
+    const {
+      descricao,
+      numero,
+      responsavel,
+      valor,
+      type,
+      description,
+      status,
+      tecnico,
+      url,
+      observacao,
+      search
+    } = item;
+    const dataFormatada = new Date(item.date);
+
+    const itemEditado = {
+      descricao,
+      numero,
+      responsavel,
+      valor,
+      type,
+      description,
+      dataFormatada,
+      status,
+      tecnico,
+      url,
+      observacao,
+      search
+    };
+    console.log(itemEditado);
+    const { data } = await api.put(`/os/${item.id}`, itemEditado);
     if (data) {
       dispatch(setDadosOS(data));
       Swal.fire({
         icon: "success",
-        title: `Deletado com sucesso!`
+        title: `Editado com sucesso!`,
+        timer: 1000
       });
+
+      window.location.reload();
     }
   } catch (error) {
     Swal.fire({

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Table from "./components/table";
 import { format, parseISO } from "date-fns";
 import { Button } from "primereact/button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteOs } from "../../actions/osAction";
 import EditarOS from "./editar";
 import ButtonDownload from "./components/print";
@@ -23,8 +23,6 @@ export default function Grid({ data }) {
   const dispatch = useDispatch();
 
   const [itemEdit, setItemEdit] = useState(null);
-  const [count, setCount] = useState(false);
-
   async function editarOS(values) {
     setItemEdit(values);
   }
@@ -32,7 +30,7 @@ export default function Grid({ data }) {
   function hideEditarOs() {
     setItemEdit(null);
   }
- 
+
   const dataOs = data.map(item => {
     return {
       ...item,
@@ -104,7 +102,7 @@ export default function Grid({ data }) {
         { Header: "Técnico", accessor: "tecnico" },
         {
           Header: "Ação",
-          accessor: "teste",
+          accessor: "_id",
           Cell: ({ cell }) => {
             return (
               <>
