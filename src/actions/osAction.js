@@ -108,3 +108,27 @@ export const deleteOs = item => async dispatch => {
     });
   }
 };
+
+export const editAction = item => async dispatch => {
+  try {
+    console.log(item, "itemmmmmmmmmm");
+    const teste = format(item.data, "dd/MM/YYYY HH:mm");
+    console.log(teste, "testeteee");
+    const { data } = await api.put("/os/", item);
+    console.log(data, "resposta");
+    if (data) {
+      dispatch(setDadosOS(data));
+      Swal.fire({
+        icon: "success",
+        title: `Deletado com sucesso!`
+      });
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text:
+        "Ocorreu um erro ao tentar buscar as os! Tente novamente mais tarde."
+    });
+  }
+};

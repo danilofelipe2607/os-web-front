@@ -1,26 +1,26 @@
-import React  from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { InputTextarea } from "primereact/inputtextarea";
-import { adicionarOsAction } from "../../actions/osAction";
+import { editAction } from "../../actions/osAction";
 import ButtonDownload from "./components/print";
+import { Calendar } from "primereact/calendar";
+import { format, parseISO, parse } from "date-fns";
 
 export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
-
-  
   const dispatch = useDispatch();
-
+  console.log(itemEdit);
   const initialValues = {
     descricao: itemEdit.descricao,
     numero: itemEdit.numero,
     responsavel: itemEdit.responsavel,
     description: itemEdit.description,
+    date: itemEdit.date,
     status: itemEdit.status,
     valor: itemEdit.valor,
-    date: itemEdit.date,
     observacao: itemEdit.observacao
   };
 
@@ -38,7 +38,7 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
     { label: "concluida", value: "concluida" }
   ];
   function EditarOS(values) {
-    dispatch(adicionarOsAction(values));
+    dispatch(editAction(values));
   }
 
   return (
@@ -121,15 +121,6 @@ export default function EditarOS({ itemEdit, EditVisible, hideEditarOs }) {
                     onChange={props.handleChange}
                     placeholder="Valor da Os"
                   />
-                </div>
-                <div className="p-col">
-                  {/* <Calendar
-                    name="date"
-                    value={props.values.date}
-                    onChange={props.handleChange}
-                    placeholder="Data da os"
-                    dateFormat="dd/mm/yy"
-                  /> */}
                 </div>
               </div>
               <div className="p-grid" style={{ marginBottom: "15px" }}>
