@@ -79,6 +79,7 @@ export const getOsAction = () => async dispatch => {
 
 export const getBuscarFiltro = values => async dispatch => {
   try {
+    console.log(values, "vlaue");
     const { data } = await api.post("/osfiltro", values);
     dispatch(setDadosOS(data));
   } catch (error) {
