@@ -8,7 +8,7 @@
     "url": "https://github.com/primefaces/sigma.git"
   },
   "engines": {
-    "node": "10.19.0",
+    "node": "10.16.1",
     "yarn": "1.x"
   },
   "license": "MIT",
