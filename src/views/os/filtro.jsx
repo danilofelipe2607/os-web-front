@@ -7,7 +7,7 @@ import { Calendar } from "primereact/calendar";
 import { getBuscarFiltro } from "../../actions/osAction";
 import { filtroValidator } from "../../utils/validador";
 import { useDispatch } from "react-redux";
-import { format, parseISO } from "date-fns";
+
 export default function Filtro() {
   const dispatch = useDispatch();
   const initialValues = {
@@ -36,13 +36,9 @@ export default function Filtro() {
   }
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={getBuscar}
-        validationSchema={filtroValidator}
-      >
+      <Formik initialValues={initialValues} onSubmit={getBuscar}>
         {props => (
-          <form onSubmit={props.handleSubmit}>
+          <>
             <div className="p-grid p-align-center">
               <div className="p-col-3">
                 <label>Descrição</label>
@@ -126,10 +122,11 @@ export default function Filtro() {
                   label="Buscar"
                   type="submit"
                   style={{ width: "170px", backgroundColor: "#333333" }}
+                  onClick={props.handleSubmit}
                 />
               </div>
             </div>
-          </form>
+          </>
         )}
       </Formik>
     </>
